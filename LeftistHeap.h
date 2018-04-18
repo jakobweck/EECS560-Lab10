@@ -5,7 +5,7 @@ class LeftistHeap: public ConcatHeap{
 public:
   LeftistHeap(int x);
   ~LeftistHeap();
-  void recFree();
+  void recFree(ConcatHeap* root);
   ConcatHeap* insert(int x);
   ConcatHeap* buildHeap(int* x, int size);
   ConcatHeap* deleteMin();

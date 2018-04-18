@@ -1,5 +1,5 @@
 #include "Queue.h"
-#include "LeftistHeap.h"
+#include "ConcatHeap.h"
 Queue::Queue(){
     this->head = nullptr;
     this->tail = nullptr;
@@ -10,8 +10,8 @@ Queue::~Queue(){
         dequeue();
     }
 }
-//Add a TwoThreeNode to the back of the queue.
-void Queue::enqueue(LeftistHeap* x){
+//Add a node to the back of the queue.
+void Queue::enqueue(ConcatHeap* x){
     QueueNode* newNode = new QueueNode(x, nullptr);
     if(isEmpty()){
         head = newNode;
@@ -23,7 +23,7 @@ void Queue::enqueue(LeftistHeap* x){
     }
     this->count++;
 }
-//Remove the TwoThreeNode at the front of the queue.
+//Remove the node at the front of the queue.
 void Queue::dequeue(){
     if(!isEmpty()){
         QueueNode* tmp = head;
@@ -34,7 +34,7 @@ void Queue::dequeue(){
     }
 }
 //Get the value at the front of the queue
-LeftistHeap* Queue::peek(){
+ConcatHeap* Queue::peek(){
     return head->getVal();
 }
 //Return whether the queue is empty.

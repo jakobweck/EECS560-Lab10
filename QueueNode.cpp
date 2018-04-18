@@ -1,10 +1,10 @@
 #include "QueueNode.h"
-#include "LeftistHeap.h"
-QueueNode::QueueNode(LeftistHeap* val, QueueNode* next){
+#include "ConcatHeap.h"
+QueueNode::QueueNode(ConcatHeap* val, QueueNode* next){
     this->val = val;
     this->next = next;
 }
-LeftistHeap* QueueNode::getVal(){
+ConcatHeap* QueueNode::getVal(){
     return this->val;
 }
 QueueNode* QueueNode::getNext(){

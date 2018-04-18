@@ -1,14 +1,14 @@
 #ifndef QNODE
 #define QNODE
-#include "LeftistHeap.h"
+#include "ConcatHeap.h"
 class QueueNode{
 private:
-    LeftistHeap* val;
+    ConcatHeap* val;
     QueueNode* next;
 public:
     QueueNode();
-    QueueNode(LeftistHeap* val, QueueNode* next);
-    LeftistHeap* getVal();
+    QueueNode(ConcatHeap* val, QueueNode* next);
+    ConcatHeap* getVal();
     QueueNode* getNext();
     void setNext(QueueNode* newNext);
 };

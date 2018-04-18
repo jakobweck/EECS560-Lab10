@@ -5,13 +5,13 @@ class SkewHeap: public ConcatHeap{
 public:
   SkewHeap(int x);
   ~SkewHeap();
-  void recFree();
+  void recFree(ConcatHeap* root);
   ConcatHeap* insert(int x);
   ConcatHeap* buildHeap(int* x, int size);
   ConcatHeap* deleteMin();
   int findMin();
   int rank();
-  ConcatHeap* concat(ConcatHeap* h1, ConcatHeap* h2);
+  SkewHeap* concat(ConcatHeap* h1, ConcatHeap* h2);
   void preorder();
   void postorder();
   void inorder();

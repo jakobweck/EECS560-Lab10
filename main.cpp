@@ -22,7 +22,7 @@ int main(int argc, char** argv){
       heap = new LeftistHeap(curr);
       initialized = true;
     }
-    else if (!initialized&&!(heapChoice == 2)){
+    else if (!initialized&&(heapChoice == 2)){
       heap = new SkewHeap(curr);
       initialized = true;
     }
@@ -39,9 +39,8 @@ int main(int argc, char** argv){
     std::cout<<"2- DeleteMin\n";
     std::cout<<"3- Preorder\n";
     std::cout<<"4- Inorder\n";
-    std::cout<<"5- Postorder\n";
-    std::cout<<"6- Levelorder\n";
-    std::cout<<"7- Exit\n";
+    std::cout<<"5- Levelorder\n";
+    std::cout<<"6- Exit\n";
 
     std::cin>>choice;
     if (std::cin.good()){
@@ -65,22 +64,21 @@ int main(int argc, char** argv){
         break;
       }
       case 3:{
+        std::cout<<"Preorder\n";
         heap->preorder();
         break;
       }
       case 4:{
+        std::cout<<"Inorder:\n";
         heap->inorder();
         break;
       }
       case 5:{
-        heap->postorder();
-        break;
-      }
-      case 6:{
+        std::cout<<"Level order:\n";
         heap->levelorder();
         break;
       }
-      case 7:{
+      case 6:{
         keepRunning = false;
         break;
       }
@@ -90,5 +88,5 @@ int main(int argc, char** argv){
     }
   }
 }
-delete(heap);
+heap->recFree(heap);
 }

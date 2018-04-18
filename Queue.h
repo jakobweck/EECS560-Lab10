@@ -1,6 +1,6 @@
 #ifndef QUEUE
 #define QUEUE
-#include "LeftistHeap.h"
+#include "ConcatHeap.h"
 
 #include "QueueNode.h"
 
@@ -14,9 +14,9 @@ public:
     ~Queue();
 
     bool isEmpty();
-    void enqueue(LeftistHeap* x);
+    void enqueue(ConcatHeap* x);
     void dequeue();
-    LeftistHeap* peek();
+    ConcatHeap* peek();
 
 };
 #endif

@@ -5,7 +5,7 @@ class ConcatHeap{
 public:
   ConcatHeap() {};
   virtual ~ConcatHeap() {};
-  virtual void recFree() = 0;
+  virtual void recFree(ConcatHeap* root) = 0;
   virtual ConcatHeap* insert(int x) = 0;
   virtual ConcatHeap* buildHeap(int* x, int size) = 0;
   virtual ConcatHeap* deleteMin() = 0;
