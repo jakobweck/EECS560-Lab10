@@ -22,7 +22,7 @@ ConcatHeap* LeftistHeap::buildHeap(int* x, int size){
 }
 
 ConcatHeap* LeftistHeap::insert(int x){
-  LeftistHeap* newHeap = new LeftistHeap(x);
+  ConcatHeap* newHeap = new LeftistHeap(x);
   return concat(this, newHeap);
 }
 int LeftistHeap::rank(){
@@ -44,40 +44,42 @@ int LeftistHeap::rank(){
 //instead of on the leftistheap itself
 //that instance obviously doesn't have its value set
 //todo fix this
-ConcatHeap* LeftistHeap::concat(ConcatHeap* h1, ConcatHeap* h2){
-  if (h1 == nullptr) return h2;
-  if (h2 == nullptr) return h1;
-  if(h1->val>h2->val){
-    ConcatHeap* tmp = h1;
-    h1 = h2;
-    h2 = tmp;
+LeftistHeap* LeftistHeap::concat(ConcatHeap* h1, ConcatHeap* h2){
+  LeftistHeap* lh1 = (LeftistHeap*) h1;
+  LeftistHeap* lh2 = (LeftistHeap*) h2;
+  if (lh1 == nullptr) return lh2;
+  if (lh2 == nullptr) return lh1;
+  if(lh1->val>lh2->val){
+    LeftistHeap* tmp = lh1;
+    lh1 = lh2;
+    lh2 = tmp;
   }
-  ConcatHeap* newRightChild = concat(h1->right, h2);
-  h1->right = newRightChild;
+  LeftistHeap* newRightChild = (LeftistHeap*)concat(lh1->right, lh2);
+  lh1->right = newRightChild;
   //adjust rank
   int lRank;
   int rRank;
 
-  if(h1->left == nullptr){
+  if(lh1->left == nullptr){
     lRank = 0;
   }
   else {
-    lRank = h1->left->rank();
+    lRank = lh1->left->rank();
   }
 
-  if(h1->right == nullptr){
+  if(lh1->right == nullptr){
     rRank = 0;
   }
   else{
-    rRank = h1->right->rank();
+    rRank = lh1->right->rank();
   }
 
   if(lRank<rRank){
-    ConcatHeap* tmp = h1->right;
-    h1->right = h1->left;
-    h1->left = tmp;
+    LeftistHeap* tmp = lh1->right;
+    lh1->right = lh1->left;
+    lh1->left = tmp;
   }
-  return h1;
+  return lh1;
 }
 
 ConcatHeap* LeftistHeap::deleteMin(){
@@ -111,16 +113,27 @@ void LeftistHeap::levelorder(){
   Queue* q = new Queue();
   q->enqueue(this);
   LeftistHeap* curr;
+  int nodesInCurrentLevel = 1;
+  int nodesInNextLevel = 0;
+
   while(!q->isEmpty()){
+    nodesInCurrentLevel--;
     curr = q->peek();
     std::cout << curr->val << " ";
     if(curr->left != nullptr){
       q->enqueue(curr->left);
+      nodesInNextLevel++;
     }
     if(curr->right != nullptr){
       q->enqueue(curr->right);
+      nodesInNextLevel++;
+    }
+    if(nodesInCurrentLevel==0){
+      std::cout<<"\n";
+      nodesInCurrentLevel = nodesInNextLevel;
+      nodesInNextLevel = 0;
     }
     q->dequeue();
   }
-  std::cout <<"\n";
+  //std::cout <<"\n";
 }

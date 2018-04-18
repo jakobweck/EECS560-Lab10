@@ -11,7 +11,7 @@ public:
   ConcatHeap* deleteMin();
   int findMin();
   int rank();
-  ConcatHeap* concat(ConcatHeap* h1, ConcatHeap* h2);
+  LeftistHeap* concat(ConcatHeap* h1, ConcatHeap* h2);
   void preorder();
   void postorder();
   void inorder();

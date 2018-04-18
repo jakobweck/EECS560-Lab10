@@ -27,7 +27,7 @@ int main(int argc, char** argv){
       initialized = true;
     }
     else{
-      heap->insert(curr);
+      heap = heap->insert(curr);
     }
   }
   file.close();
@@ -78,6 +78,7 @@ int main(int argc, char** argv){
       }
       case 6:{
         heap->levelorder();
+        break;
       }
       case 7:{
         keepRunning = false;
